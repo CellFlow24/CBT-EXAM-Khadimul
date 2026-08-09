@@ -1,7 +1,6 @@
 /* --- BASE & TYPOGRAPHY --- */
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-html, body { overflow-x: hidden; } /* Prevents horizontal scroll on mobile */
-body { background-color: #0b1121; padding: 20px 10px; color: #f8fafc; line-height: 1.6; }
+body { background-color: #0b1121; padding: 20px 10px; color: #f8fafc; line-height: 1.6; overflow-x: clip; }
 
 /* Desktop-style wide container */
 .container { max-width: 1000px; width: 100%; margin: 0 auto; padding: 0 5px; }
@@ -61,10 +60,13 @@ h1, h2, h3, h4 { color: #f8fafc; text-align: center; margin-bottom: 15px; font-w
 }
 
 .timer-banner { 
-  position: sticky; top: 10px; background: #0b1121; color: #f8fafc; 
+  position: -webkit-sticky; /* For Safari support */
+  position: sticky; 
+  top: 0; /* Sticks exactly to the top */
+  background: #0b1121; color: #f8fafc; 
   text-align: center; padding: 15px; font-size: 1.2rem; font-weight: bold; 
-  border-radius: 12px; margin-bottom: 25px; z-index: 1000; 
-  border: 1px solid #334155; box-shadow: 0 8px 20px rgba(0,0,0,0.6); 
+  border-radius: 0 0 12px 12px; margin-bottom: 25px; z-index: 1000; 
+  border: 1px solid #334155; border-top: none; box-shadow: 0 8px 20px rgba(0,0,0,0.6); 
 }
 
 /* --- EXAM PAPER UI (LIGHT THEME FOR READABILITY) --- */
