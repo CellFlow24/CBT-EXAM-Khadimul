@@ -127,7 +127,9 @@ const App = {
         let html = "";
         App.examQuestions.forEach((q, i) => {
           let imgTag = q.imgUrl ? `<img src="${q.imgUrl}" class="q-image">` : '';
-          html += `<div class="card" style="clear:both;">
+          
+          // FIX: Changed from 'card' to 'question-card' so only questions are white
+          html += `<div class="question-card" style="clear:both;">
             <p style="font-size:1.1rem; margin-bottom: 10px;"><strong>Q${i+1}. ${q.text}</strong></p>
             ${imgTag}
             <label class="option-label"><input type="radio" name="${q.id}" value="A"> ${q.optA}</label>
@@ -142,7 +144,7 @@ const App = {
         App.startTimer(90 * 60); 
       });
   },
-
+  
   startTimer: (timeLeft) => {
     App.countdown = setInterval(() => {
       let m = Math.floor(timeLeft / 60); let s = timeLeft % 60;
@@ -191,12 +193,13 @@ const App = {
       App.latestPdfData = res.fileData;
       App.latestPdfName = res.fileName;
       
+      // FIX: The Result Card is now wrapped in the standard dark '.card' with properly colored text
       document.getElementById('exam-page').innerHTML = `
-        <div class="card" style="text-align:center;">
-          <h2 class="highlight-text">Exam Complete!</h2>
-          <h4 style="color:#cbd5e1; margin-bottom: 20px;">${res.subject}</h4>
-          <p style="font-size: 1.2rem;">Score: <strong style="color: #facc15; font-size: 1.5rem;">${res.score}</strong> / ${res.maxScore}</p>
-          <p style="color:#94a3b8; margin: 20px 0;">Your detailed PDF report has been emailed.</p>
+        <div class="card" style="text-align:center; padding: 40px 20px;">
+          <h2 class="highlight-text" style="font-size: 2.2rem; margin-bottom: 5px;">Exam Complete!</h2>
+          <h4 style="color:#cbd5e1; margin-bottom: 25px; text-transform: uppercase;">${res.subject}</h4>
+          <p style="font-size: 1.3rem; margin-bottom: 20px;">Score: <strong style="color: #facc15; font-size: 1.8rem;">${res.score}</strong> / ${res.maxScore}</p>
+          <p style="color:#94a3b8; margin: 25px 0;">Your detailed PDF report has been emailed.</p>
           <button class="btn btn-primary" onclick="App.downloadLatestPdf()">Download PDF Report</button>
           <button class="btn btn-secondary" onclick="App.loadDashboard()">Return to Dashboard</button>
         </div>
