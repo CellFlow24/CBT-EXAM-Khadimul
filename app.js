@@ -64,11 +64,12 @@ const App = {
   },
 
   logout: () => {
+    // Clear the user's data for security
     App.currentUser = null;
-    document.getElementById('dashboard-page').classList.add('hidden');
-    document.getElementById('auth-page').classList.remove('hidden');
     document.getElementById('login-id').value = '';
     document.getElementById('login-pass').value = '';
+    // Instantly redirect them back to the main website
+    window.location.href = "https://udanprep.in/";
   },
 
   loadDashboard: () => {
