@@ -81,7 +81,15 @@ h1, h2, h3, h4 { color: #f8fafc; text-align: center; margin-bottom: 15px; font-w
   animation: slideFadeUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
 }
 .question-card p strong { color: #1e293b; font-size: 1.1rem; }
-.q-image { max-width: 100%; border-radius: 8px; margin: 15px 0; border: 1px solid #cbd5e1; }
+.q-image { 
+  max-width: 100%; 
+  max-height: 350px; /* Limits the height of massive images */
+  width: auto; /* Ensures small images stay small */
+  border-radius: 8px; 
+  margin: 15px 0; 
+  border: 1px solid #cbd5e1; 
+  object-fit: contain; /* Prevents stretching or distortion */
+}
 
 .option-label { 
   display: flex; align-items: center; padding: 16px; 
